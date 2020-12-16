@@ -32,29 +32,39 @@ public class PaymentPageFactory {
 	@CacheLookup
 	WebElement pfsubmitbtn;
 	
-	@FindBy(xpath = "//button[contains(.,'Browse Courses')]")
+	@FindBy(xpath = "//button[contains(text(),'Browse Courses')]")
 	@CacheLookup
 	WebElement pfbrowsecourses;
 	
-	@FindBy(css="li:nth-child(2) span")
+	@FindBy(xpath = "//div[@id='FrontDropContent']")
 	@CacheLookup
-	WebElement pfselectcoure;
+	WebElement pffrontdrop;
 	
-	@FindBy(xpath = "//img[@alt='Healing Affirmations']")
+	@FindBy(xpath = "/html/body/div/div[6]/div/div[2]/div/div[3]/div[2]/div[3]/ul/li[2]/a")
+	@CacheLookup
+	WebElement pfselectcourse;
+	
+	@FindBy(css = "div.mainbody:nth-child(2) div.catbody div.crnlst17scroll:nth-child(7) div.crnlst17 ul:nth-child(1) li:nth-child(1) > a:nth-child(1)")
 	@CacheLookup
 	WebElement pfselectclass;
 	
-	@FindBy(how = How.NAME, using = "JoinClassButton1")
+	@FindBy(xpath = "//input[@name='JoinClassButton1']")
 	@CacheLookup
 	WebElement pfjointhiscourse1;
 	
-	@FindBy(linkText = "Add to Cart")
+	@FindBy(xpath = "//div[@class='viewhidebig']//div[1]//div[5]//a[1]")
 	@CacheLookup
 	WebElement pfaddtocart;
 	
-	@FindBy(how = How.NAME, using = "ContinueSubmit")
+	@FindBy(xpath = "//input[@name='ContinueSubmit']")
 	@CacheLookup
 	WebElement pffinalcheckout;
+	
+
+	@FindBy(xpath = "//div[@class='paybox']")
+	@CacheLookup
+	WebElement pfpaybox;
+	
 	
 	@FindBy(how=How.ID, using="first_name")
 	@CacheLookup
@@ -84,9 +94,17 @@ public class PaymentPageFactory {
 	@CacheLookup
 	WebElement pfstate;
 	
+	@FindBy(how=How.ID, using="ani")
+	@CacheLookup
+	WebElement pfphoneNo;
+	
 	@FindBy(how=How.ID, using="cctype")
 	@CacheLookup
 	WebElement pfcctype;
+
+	@FindBy(how=How.ID, using="cc")
+	@CacheLookup
+	WebElement pfccnumber;
 	
 	@FindBy(how=How.ID, using="exp_month")
 	@CacheLookup
@@ -95,6 +113,18 @@ public class PaymentPageFactory {
 	@FindBy(how=How.ID, using="exp_year")
 	@CacheLookup
 	WebElement pfexpyear;
+	
+	@FindBy(how=How.ID, using="sec")
+	@CacheLookup
+	WebElement pfcvv;
+	
+	@FindBy(xpath = "//input[@name='submitButton']")
+	@CacheLookup
+	WebElement pfcompleteppayment;
+	
+	@FindBy(xpath = "//div[@class='zoomIn errorscreen']")
+	@CacheLookup
+	WebElement pfpaymentfailmsg;
 
 // Step 2 : Setters
 
@@ -103,77 +133,94 @@ public class PaymentPageFactory {
 	}
 
 
-	public void setPfsigninoption(WebElement pfsigninoption) {
+	public void setPfsigninoption() {
 		this.pfsigninoption.click();;
 	}
 
 
 	public void setPfuname(String uname) {
+		pfuname.clear();
 		pfuname.sendKeys(uname);
 	}
 
 
 	public void setPfpwd(String pwd) {
+		pfpwd.clear();
 		pfpwd.sendKeys(pwd);
 	}
 
 
-	public void setPfsubmitbtn(WebElement pfsubmitbtn) {
+	public void setPfsubmitbtn() {
 		this.pfsubmitbtn.click();
 	}
 
 
-	public void setPfbrowsecourses(WebElement pfbrowsecourses) {
+	public void setPfbrowsecourses() {
 		this.pfbrowsecourses.click();
 	}
 
 
-	public void setPfselectcoure(WebElement pfselectcoure) {
-		this.pfselectcoure.click();
+	public void setPfselectcourse() {
+		this.pfselectcourse.click();
 	}
 
 
-	public void setPfselectclass(WebElement pfselectclass) {
+	public void setPffrontdrop() {
+		pffrontdrop.click();
+	}
+
+
+	public void setPfselectclass() {
 		this.pfselectclass.click();
 	}
 
 
-	public void setPfjointhiscourse1(WebElement pfjointhiscourse1) {
+	public void setPfjointhiscourse1() {
 		this.pfjointhiscourse1.click();
 	}
 
 
-	public void setPfaddtocart(WebElement pfaddtocart) {
+	public void setPfaddtocart() {
 		this.pfaddtocart.click();
 	}
 
 
-	public void setPffinalcheckout(WebElement pffinalcheckout) {
+	public void setPffinalcheckout() {
 		this.pffinalcheckout.click();
 	}
 
 
+	public void setPfpaybox() {
+		this.pfpaybox.click();
+	}
+
+
 	public void setPffname(String sfname) {
+		this.pffname.clear();
 		this.pffname.sendKeys(sfname);
 	}
 
 
 	public void setPflname(String slname) {
+		this.pflname.clear();
 		this.pflname.sendKeys(slname);
 	}
 
 
 	public void setPfaddress(String saddress) {
+		this.pfaddress.clear();
 		this.pfaddress.sendKeys(saddress);
 	}
 
 
 	public void setPfcity(String scity) {
+		this.pfcity.clear();
 		this.pfcity.sendKeys(scity);
 	}
 
 
-	public void setPfzip(CharSequence[] zip) {
+	public void setPfzip(String zip) {
+		this.pfzip.clear();
 		this.pfzip.sendKeys(zip);
 	}
 
@@ -190,9 +237,20 @@ public class PaymentPageFactory {
 	}
 
 
+	public void setPfphoneNo(String sphoneNo) {
+		pfphoneNo.clear();
+		pfphoneNo.sendKeys(sphoneNo);
+	}
+
+
 	public void setPfcctype(String cctype) {
 		Select drpCCtype = new Select(pfcctype);
 		drpCCtype.selectByVisibleText(cctype);
+	}
+
+	public void setPfccnumber(String ccnumber) {
+		pfccnumber.clear();
+		pfccnumber.sendKeys(ccnumber); 
 	}
 
 
@@ -207,8 +265,24 @@ public class PaymentPageFactory {
 		drpExpYear.selectByVisibleText(expyear);
 	}
 
+
+	public void setPfcvv(String cvv) {
+		this.pfcvv.clear();
+		this.pfcvv.sendKeys(cvv);
+	}
+
+
+	public void setPfcompleteppayment() {
+		this.pfcompleteppayment.click();
+	}
+
+
+	public void setPfpaymentfailmsg() {
+		this.pfpaymentfailmsg.getText();
+	}
+
 // Getters
-	
+
 
 	public WebDriver getDriver() {
 		return driver;
@@ -245,8 +319,13 @@ public class PaymentPageFactory {
 	}
 
 
-	public WebElement getPfselectcoure() {
-		return pfselectcoure;
+	public WebElement getPffrontdrop() {
+		return pffrontdrop;
+	}
+
+
+	public WebElement getPfselectcourse() {
+		return pfselectcourse;
 	}
 
 
@@ -305,8 +384,18 @@ public class PaymentPageFactory {
 	}
 
 
+	public WebElement getPfphoneNo() {
+		return pfphoneNo;
+	}
+
+
 	public WebElement getPfcctype() {
 		return pfcctype;
+	}
+
+
+	public WebElement getPfccnumber() {
+		return pfccnumber;
 	}
 
 
@@ -320,7 +409,22 @@ public class PaymentPageFactory {
 	}
 
 
-	public void HotelBookingPageFactory(WebDriver driver) {
+	public WebElement getPfcvv() {
+		return pfcvv;
+	}
+
+
+	public WebElement getPfcompleteppayment() {
+		return pfcompleteppayment;
+	}
+
+
+	public WebElement getPfpaymentfailmsg() {
+		return pfpaymentfailmsg;
+	}
+
+
+	public PaymentPageFactory(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

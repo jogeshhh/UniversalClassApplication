@@ -1,16 +1,23 @@
-#Author : Jogesh
+#Author: Rajesh
 @ForgotPassword
 
-Feature: Forgot Password functionality
-	
-	Scenario: Successful resetting the password
-	Given user is on the forgot password page
-	When user enter the valid email address
-	Then navigate to the forgot password page
-	And display success message
-	
-	Scenario: Failure in resetting the password
-	Given user is on the forgot password page
-	When user enter the invalid email address
-	Then nvaigate to the display error page
-	
+Feature: Password
+
+ Scenario: Password
+ Given User Launch Chrome browser
+ When User opens URL
+ Then go to Main menu and click on Signin
+ And Click on forgot your password
+ Then enter valid mail as "kavururajesh8514@gmail.com"
+ And click on reset password
+ 
+  Scenario Outline: Password with unhappy Path Test condition
+ Given User Launch Chrome browser
+ When User opens URL
+ Then go to Main menu and click on Signin
+ And Click on forgot your password
+ Then enter invalid <email>
+ And click on reset password
+ Examples:
+ |email|
+ |"kavururajesh@gmail.com"|

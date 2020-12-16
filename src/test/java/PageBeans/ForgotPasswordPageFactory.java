@@ -5,17 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 
 public class ForgotPasswordPageFactory
 {
-	WebDriver driver;
+WebDriver driver;
 	
-//Step 1 : locating the elements
+	//Step 1 : locating the elements
 	@FindBy(how=How.ID, using= "clssicon")
 	@CacheLookup
 	WebElement pfmenu;
 	
-	@FindBy(xpath = "//body/div[@id='maincontainer']/div[2]/div[1]/div[1]/div[1]")
+	@FindBy(xpath = "//span[contains(text(),'Sign In')]")
 	@CacheLookup
 	WebElement pfsignin;
 	
@@ -31,36 +32,38 @@ public class ForgotPasswordPageFactory
 	@CacheLookup
 	WebElement pfEnterurmail;
 	
-	@FindBy(how=How.NAME, using="SubmitButton")
+	@FindBy(xpath = "//body/div[@id='maincontainer']/div[@id='mainbody']/div[1]/div[2]/div[1]/div[1]/form[1]/div[3]/input[1]")
 	@CacheLookup
 	WebElement pfresetpass;
 
-	public void setPfmenu(WebElement pfmenu) 
+	public void setPfmenu() 
 	{
 		pfmenu.click();
 	}
 
-	public void setPfsignin(WebElement pfsignin) 
+	public void setPfsignin() 
 	{
 		pfsignin.click();
 	}
 
 	public void setPfuname(String uname) 
 	{
+		pfuname.clear();
 		pfuname.sendKeys(uname);
 	}
 
-	public void setPffpswd(WebElement pffpswd) 
+	public void setPffpswd()
 	{
 		pffpswd.click();
 	}
 
 	public void setPfEnterurmail(String Enterurmail) 
 	{
+		pfEnterurmail.clear();
 		pfEnterurmail.sendKeys(Enterurmail);;
 	}
 
-	public void setPfresetpass(WebElement pfresetpass) 
+	public void setPfresetpass() 
 	{
 		pfresetpass.click();
 	}
@@ -91,4 +94,8 @@ public class ForgotPasswordPageFactory
 	}
 	
 
+	public ForgotPasswordPageFactory(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
 }

@@ -1,44 +1,57 @@
-//package ForgotPassword;
-//
-//import cucumber.api.PendingException;
-//import cucumber.api.java.en.*;
-//
-//public class StepDefForgotPassword {
-//
-//@Given("^user is on the forgot password page$")
-//public void user_is_on_the_forgot_password_page() throws Throwable {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new PendingException();
-//}
-//
-//@When("^user enter the valid email address$")
-//public void user_enter_the_valid_email_address() throws Throwable {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new PendingException();
-//}
-//
-//@Then("^navigate to the forgot password page$")
-//public void navigate_to_the_forgot_password_page() throws Throwable {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new PendingException();
-//}
-//
-//@Then("^display success message$")
-//public void display_success_message() throws Throwable {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new PendingException();
-//}
-//
-//@When("^user enter the invalid email address$")
-//public void user_enter_the_invalid_email_address() throws Throwable {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new PendingException();
-//}
-//
-//@Then("^nvaigate to the display error page$")
-//public void nvaigate_to_the_display_error_page() throws Throwable {
-//    // Write code here that turns the phrase above into concrete actions
-//    throw new PendingException();
-//}
-//
-//}
+package ForgotPassword;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import PageBeans.ForgotPasswordPageFactory;
+import cucumber.api.java.en.*;
+
+public class StepDefForgotPassword extends BaseClass 
+{
+	WebDriver driver;
+	private ForgotPasswordPageFactory fppf;
+
+
+@Given("^User Launch Chrome browser$")
+public void user_Launch_Chrome_browser() throws Throwable {
+	System.setProperty("webdriver.edge.driver", "D:\\Capgemini\\Softwares\\edgedriver_win64\\msedgedriver.exe");
+		EdgeDriver driver = new EdgeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		fppf = new ForgotPasswordPageFactory(driver);
+		driver.get("https://www.universalclass.com/"); 
+		driver.manage().timeouts().implicitlyWait(70, TimeUnit.SECONDS);
+
+}
+
+@When("^User opens URL$")
+public void user_opens_URL() throws Throwable {
+}
+
+@Then("^go to Main menu and click on Signin$")
+public void go_to_Main_menu_and_click_on_Signin() throws Throwable {
+	fppf.setPfmenu(); Thread.sleep(1000);
+	fppf.setPfsignin(); Thread.sleep(1000);
+}
+
+@Then("^Click on forgot your password$")
+public void click_on_forgot_your_password() throws Throwable {
+	fppf.setPffpswd();	Thread.sleep(1000);
+}
+
+@Then("^enter valid mail as \"([^\"]*)\"$")
+public void enter_valid_mail_as(String arg1) throws Throwable {
+	fppf.setPfEnterurmail(arg1);Thread.sleep(1000);
+}
+
+@Then("^click on reset password$")
+public void click_on_reset_password() throws Throwable {
+	 fppf.setPfresetpass();
+}
+
+@Then("^enter invalid \"([^\"]*)\"$")
+public void enter_invalid(String arg1) throws Throwable {
+	fppf.setPfEnterurmail(arg1);Thread.sleep(1000);
+}
+}

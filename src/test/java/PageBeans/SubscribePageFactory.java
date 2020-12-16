@@ -5,28 +5,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 
-public class SubscribePageFactory {
-WebDriver driver;
+public class SubscribePageFactory
+{
+	public WebDriver driver;
+	public SubscribePageFactory(WebDriver rdriver) {
+		driver=rdriver;
+		PageFactory.initElements(rdriver, this);
+	}
 	
 	//Step 1 : locating the elements
-	@FindBy(how=How.ID, using= "clssicon")
+	@FindBy(xpath = "//button[@id='clssicon']")
 	@CacheLookup
 	WebElement pfmenu;
 	
-	@FindBy(xpath="//body/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]")
+	@FindBy(xpath="//body/div[2]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/nav[1]/div[1]/a[4]")
 	@CacheLookup
 	WebElement pfSubscribe;
 	
-	@FindBy(xpath=" //body/div[@id='mainco")
+	@FindBy(xpath="//body/div[@id='maincontainer']/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[5]/a[1]")
 	@CacheLookup
 	WebElement pfplatinum;
 	
-	@FindBy(how=How.NAME, using="givenname")
+	@FindBy(xpath = "//input[@id='givenname']")
 	@CacheLookup
 	WebElement pffname;
 	
-	@FindBy(how=How.NAME, using="sn")
+	@FindBy(xpath = "//input[@id='sn']")
 	@CacheLookup
 	WebElement pflname;
 	
@@ -34,7 +40,7 @@ WebDriver driver;
 	@CacheLookup
 	WebElement pfemail;
 	
-	@FindBy(how=How.NAME, using="userpassword")
+	@FindBy(xpath = "//input[@id='userpassword']")
 	@CacheLookup
 	WebElement pfpword;
 	
@@ -42,7 +48,7 @@ WebDriver driver;
 	@CacheLookup
 	WebElement pfcheckbox;
 	
-	@FindBy(how = How.NAME, using = "SignUpButton")
+	@FindBy(xpath = "//body/div[@id='maincontainer']/div[@id='myPopUp']/div[@id='PopUpContent']/div[@id='popbdy']/div[1]/form[1]/div[6]/input[1]")
 	@CacheLookup
 	WebElement pfsignup;
 	
@@ -76,79 +82,94 @@ WebDriver driver;
 	WebElement pfresetpass;
 	
 // setters
-	public void setPfmenu(WebElement pfmenu) 
+	public void setPfmenu() 
 	{
 		pfmenu.click();
 		
 	}
 
-	public void setPfSubscribe(WebElement pfSubscribe) 
+	public void setPfSubscribe() 
 	{
 		pfSubscribe.click();
 	}
 
-	public void setPfplatinum(WebElement pfplatinum) 
+	public void setPfplatinum() 
 	{
 		pfplatinum.click();
 	}
 
-	public void setPffname(String fname) 
-	{
-		pffname.sendKeys(fname);
+	public void setPffname(String sname) 
+	{	
+		pffname.click();
+		pffname.clear();
+		pffname.sendKeys(sname);
 	}
 
-	public void setPflname(String lname) 
-	{
-		pflname.sendKeys(lname);;
+	public void setPflname(String sname) 
+	{	
+		pflname.click();
+		pflname.clear();
+		pflname.sendKeys(sname);;
 	}
 
-	public void setPfemail(String email) 
+	public void setPfemail(String semail) 
 	{
-		pfemail.sendKeys(email);
+		pfemail.click();
+		pfemail.clear();
+		pfemail.sendKeys(semail);
 	}
 
-	public void setPfpword(String pword) 
-	{
-		pfpword.sendKeys(pword);
+	public void setPfpword(String spword) 
+	{	
+		pfpword.click();
+		pfpword.clear();
+		pfpword.sendKeys(spword);
 	}
 
-	public void setPfcheckbox(WebElement pfcheckbox)
+	public void setPfcheckbox()
 	{
 		pfcheckbox.click();
 	}
 
-	public void setPfsignup(WebElement pfsignup) 
+	public void setPfsignup() 
 	{
 		pfsignup.click();
 	}
 
-	public void setPfsignin(WebElement pfsignin) 
+	public void setPfsignin() 
 	{
 		pfsignin.click();
 	}
 
-	public void setPfuname(String uname) 
+	public void setPfuname(String suname) 
 	{
-		pfuname.sendKeys(uname);
+		pfuname.clear();
+		pfuname.sendKeys(suname);
 	}
 
-	public void setPfpassword(String password) {
-		pfpassword.sendKeys(password);
+	public void setPfpassword(String spassword) 
+	{
+		pfpassword.clear();
+		pfpassword.sendKeys(spassword);
 	}
 
-	public void setPfsin(WebElement pfsin) {
+	public void setPfsin() 
+	{
 		pfsin.click();
 	}
 
-	public void setPffpswd(WebElement pffpswd) {
+	public void setPffpswd() 
+	{
 		pffpswd.click();
 	}
 
-	public void setPfEnterurmail(String Enterurmail) {
-		pfEnterurmail.sendKeys(Enterurmail);;
+	public void setPfEnterurmail(String sEnterurmail) 
+	{
+		pfEnterurmail.sendKeys(sEnterurmail);;
 	}
 
-	public void setPfresetpass(WebElement pfresetpass) {
+	public void setPfresetpass() 
+	{
 		pfresetpass.click();
 	}
 
@@ -216,6 +237,19 @@ WebDriver driver;
 	public WebElement getPfresetpass() {
 		return pfresetpass;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
 	
 	
 

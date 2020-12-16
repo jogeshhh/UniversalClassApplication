@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 
 public class BrowseCoursePageFactory {	WebDriver driver;
 
@@ -26,13 +27,12 @@ public class BrowseCoursePageFactory {	WebDriver driver;
 		this.pfsearchbox.sendKeys(course);
 	}
 
-	public void setPfsearchbtn(WebElement pfsearchbtn) {
+	public void setPfsearchbtn() {
 		this.pfsearchbtn.click();
 	}
 
-	public void setPfsearchresult(WebElement pfsearchresult) {
-		this.pfsearchresult.getText();
-		// use assert cmd to verify that invalidity
+	public String setPfsearchresult() {
+		return this.pfsearchresult.getText();
 	}
 
 //Step 3 : Getters
@@ -47,6 +47,10 @@ public class BrowseCoursePageFactory {	WebDriver driver;
 
 	public WebElement getPfsearchresult() {
 		return pfsearchresult;
+	}
+	public BrowseCoursePageFactory(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 		
 }
