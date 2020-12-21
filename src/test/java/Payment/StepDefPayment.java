@@ -1,6 +1,8 @@
 package Payment;
 
 import cucumber.api.java.en.*;
+import dataProviders.ConfigFileReader;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -12,14 +14,17 @@ import PageBeans.PaymentPageFactory;
 public class StepDefPayment {
 	WebDriver driver;
 	private PaymentPageFactory objppf;
+	ConfigFileReader configFileReader;
 
+	
 @Given("^user is on cart check out page$")
 public void user_is_on_cart_check_out_page() throws Throwable {
-	System.setProperty("webdriver.edge.driver", "D:\\Capgemini\\Softwares\\edgedriver_win64\\msedgedriver.exe");
+	configFileReader= new ConfigFileReader();
+	System.setProperty("webdriver.edge.driver", configFileReader.getDriverPath());	
 	driver = new EdgeDriver();
-	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	objppf = new PaymentPageFactory(driver);
-	driver.get("https://www.universalclass.com/");//launch url application 
+	driver.get(configFileReader.getApplicationUrl());
 
 	driver.manage().window().maximize();
 	objppf.setPfmaindropdown();
@@ -31,9 +36,9 @@ public void user_is_on_cart_check_out_page() throws Throwable {
 	objppf.setPfselectcourse();
 	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
 	objppf.getPffrontdrop();
-	objppf.setPfselectclass(); 
-	objppf.setPfjointhiscourse1(); 
-	objppf.setPfaddtocart(); 
+	objppf.setPfselectclass(); Thread.sleep(1000);
+	objppf.setPfjointhiscourse1(); Thread.sleep(1000);
+	objppf.setPfaddtocart(); Thread.sleep(1000);
 }
 
 @Given("^user is navigated to the checkout page$")
@@ -44,19 +49,31 @@ public void user_is_navigated_to_the_checkout_page() throws Throwable {
 @When("^user enters all the Valid data$")
 public void user_enters_all_the_Valid_data() throws Throwable {
     objppf.setPffname("jogesh");
-    objppf.setPflname("kumar");
-    objppf.setPfaddress("Rewari");	
-    objppf.setPfcity("Rewari");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPflname("kumar");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfaddress("Rewari");
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfcity("Rewari");
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
     objppf.setPfstate("Not Listed (none)");	
-    objppf.setPfzip("123401");
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfzip("123401");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
     objppf.setPfcountry("India");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
     objppf.setPfphoneNo("8006464357");	
-    objppf.setPfcctype("Visa");
-    objppf.setPfccnumber("4442123412341234");
-    objppf.setPfexpmonth("11");	
-    objppf.setPfexpyear("2024");
-    objppf.setPfcvv("231");
-	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfcctype("Visa");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfccnumber("4442123412341234");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfexpmonth("11");
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfexpyear("2024");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+    objppf.setPfcvv("231");	
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
     objppf.setPfcompleteppayment();
 }
 
@@ -72,22 +89,19 @@ public void display_information_succesfully_message() throws Throwable {
 @When("^user enters incorrect \"([^\"]*)\" or \"([^\"]*)\" or \"([^\"]*)\" or \"([^\"]*)\"$")
 public void user_enters_incorrect_or_or_or(String arg1, String arg2, String arg3, String arg4) throws Throwable {
 	objppf.setPfpaybox();
-	
-    objppf.setPffname("jogesh");
+	objppf.setPffname("jogesh");	
     objppf.setPflname("kumar");
-    objppf.setPfaddress("Rewari");	
+    objppf.setPfaddress("Rewari");
     objppf.setPfcity("Rewari");	
     objppf.setPfstate("Not Listed (none)");	
-    objppf.setPfzip("123401");
-    objppf.setPfcountry(arg3);	
+    objppf.setPfzip("123401");	
+    objppf.setPfcountry(arg3);
     objppf.setPfphoneNo(arg4);	
-    objppf.setPfcctype("Visa");
+    objppf.setPfcctype("Visa");	
     objppf.setPfccnumber(arg1);
     objppf.setPfexpmonth("11");	
     objppf.setPfexpyear("2024");
-    objppf.setPfcvv(arg2);
-	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	
+    objppf.setPfcvv(arg2);	
     objppf.setPfcompleteppayment();
     }
 
@@ -95,7 +109,6 @@ public void user_enters_incorrect_or_or_or(String arg1, String arg2, String arg3
 public void display_payment_failed_message() throws Throwable {
 	String failmsg = objppf.getPfpaymentfailmsg().getText();
 	System.out.println("fail msg is : "+failmsg);
-	driver.close();
 //    String expected = "Please correct the following";
 //    Assert.assertTrue(failmsg.contains(expected));
 //    System.out.println("payment is failed");

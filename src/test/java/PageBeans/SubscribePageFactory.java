@@ -10,9 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 public class SubscribePageFactory
 {
 	public WebDriver driver;
-	public SubscribePageFactory(WebDriver rdriver) {
-		driver=rdriver;
-		PageFactory.initElements(rdriver, this);
+
+	public SubscribePageFactory(WebDriver driver) 
+	{
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
 	}
 	
 	//Step 1 : locating the elements
@@ -237,20 +239,6 @@ public class SubscribePageFactory
 	public WebElement getPfresetpass() {
 		return pfresetpass;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 
-	
-	
 	
 
 }

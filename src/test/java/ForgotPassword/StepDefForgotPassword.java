@@ -6,22 +6,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 import PageBeans.ForgotPasswordPageFactory;
+import PageBeans.SignInPageFactory;
+import PageBeans.SubscribePageFactory;
 import cucumber.api.java.en.*;
+import dataProviders.ConfigFileReader;
 
-public class StepDefForgotPassword extends BaseClass 
+public class StepDefForgotPassword
 {
 	WebDriver driver;
 	private ForgotPasswordPageFactory fppf;
+	public SubscribePageFactory pfs;
+	public SignInPageFactory sipf;
+	ConfigFileReader configFileReader;
 
 
 @Given("^User Launch Chrome browser$")
 public void user_Launch_Chrome_browser() throws Throwable {
-	System.setProperty("webdriver.edge.driver", "D:\\Capgemini\\Softwares\\edgedriver_win64\\msedgedriver.exe");
+	configFileReader= new ConfigFileReader();
+	System.setProperty("webdriver.edge.driver", configFileReader.getDriverPath());
 		EdgeDriver driver = new EdgeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
 		fppf = new ForgotPasswordPageFactory(driver);
-		driver.get("https://www.universalclass.com/"); 
-		driver.manage().timeouts().implicitlyWait(70, TimeUnit.SECONDS);
+		driver.get(configFileReader.getApplicationUrl());
+		driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
 
 }
 
@@ -31,18 +38,24 @@ public void user_opens_URL() throws Throwable {
 
 @Then("^go to Main menu and click on Signin$")
 public void go_to_Main_menu_and_click_on_Signin() throws Throwable {
-	fppf.setPfmenu(); Thread.sleep(1000);
-	fppf.setPfsignin(); Thread.sleep(1000);
+	fppf.setPfmenu(); 
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+	fppf.setPfsignin(); 
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+
 }
 
 @Then("^Click on forgot your password$")
 public void click_on_forgot_your_password() throws Throwable {
-	fppf.setPffpswd();	Thread.sleep(1000);
+	fppf.setPffpswd();
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
 }
 
 @Then("^enter valid mail as \"([^\"]*)\"$")
 public void enter_valid_mail_as(String arg1) throws Throwable {
-	fppf.setPfEnterurmail(arg1);Thread.sleep(1000);
+	fppf.setPfEnterurmail(arg1);
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+
 }
 
 @Then("^click on reset password$")
@@ -52,6 +65,8 @@ public void click_on_reset_password() throws Throwable {
 
 @Then("^enter invalid \"([^\"]*)\"$")
 public void enter_invalid(String arg1) throws Throwable {
-	fppf.setPfEnterurmail(arg1);Thread.sleep(1000);
+	fppf.setPfEnterurmail(arg1);
+	driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+
 }
 }
